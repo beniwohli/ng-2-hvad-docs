@@ -8,23 +8,23 @@ mutlilingual-ng:
 
 .. code-block:: python
 
-	class MyModelInline(multilingual.admin.MultilingualInlineAdmin):
-		model = MyInlineModel
-		extra = 3
+    class MyModelInline(multilingual.admin.MultilingualInlineAdmin):
+        model = MyInlineModel
+        extra = 3
 
-	class MyModelAdmin(multilingual.admin.MultilingualInlineAdmin)
-		list_display = ('title', 'is_published')
-		inlines = [
+    class MyModelAdmin(multilingual.admin.MultilingualInlineAdmin)
+        list_display = ('title', 'is_published')
+        inlines = [
             MyModelInline,
         ]
 
-		search_fields = [
+        search_fields = [
             'translations__title',
             'translations__destination',
             'translations__lead_text',
         ]
 
-		use_fieldsets = (
+        use_fieldsets = (
             (_("Common"), {
                 'fields': (('is_published',)
             }),
@@ -37,7 +37,7 @@ hvad:
 
 .. code-block:: python
 
-	class MyModelInline(TranslatableTabularInline):
+    class MyModelInline(TranslatableTabularInline):
         model = MyInlineModel
         extra = 3
         ordering = None # necessary because of a bug in hvad, might be resolved later on
@@ -70,7 +70,7 @@ Notable changes
 
 the ng-inline might have a queryset method like this::
 
-	def queryset(self, request):
+    def queryset(self, request):
             return super(multilingual.admin.MultilingualInlineAdmin, self).queryset(request)
 
 This is not necessary anymore with hvad.
